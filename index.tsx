@@ -9,6 +9,11 @@ type SEOProps = {
    */
   robots?: 'noindex' | 'nofollow' | 'noindex, nofollow';
   description?: string;
+  /**
+   * Truncate after descriptionMaxLength. Default value is 150.
+   * (Google generally truncates descritpion to ~155–160 characters https://moz.com/learn/seo/meta-description )
+   */
+  descriptionMaxLength?: number;
   twitter?: {
     /**
      * Twitter card type
@@ -35,10 +40,6 @@ type SEOProps = {
   link?: Record<string, string>[];
   og?: {
     title?: string;
-    /**
-     * First 200 letters are used for long description.
-     * (Google generally truncates descritpion to ~155–160 characters https://moz.com/learn/seo/meta-description )
-     */
     description?: string;
     url?: string;
     type?: 'article' | 'book' | 'website' | 'profile';
@@ -56,6 +57,7 @@ const SEO: React.VFC<SEOProps> = memo(
     description,
     canonical,
     robots,
+    descriptionMaxLength = 150,
     twitter = {},
     facebook = {},
     og = {},
@@ -75,7 +77,7 @@ const SEO: React.VFC<SEOProps> = memo(
         <meta
           key="description"
           name="description"
-          content={description.substr(0, 200)}
+          content={description.substr(0, descriptionMaxLength)}
         />
       );
     }
@@ -116,7 +118,10 @@ const SEO: React.VFC<SEOProps> = memo(
         <meta
           key="og:description"
           property="og:description"
-          content={og.description || description?.substr(0, 100)}
+          content={(og.description || description)?.substr(
+            0,
+            descriptionMaxLength
+          )}
         />
       );
     }
