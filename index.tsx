@@ -7,13 +7,13 @@ type SEOProps = {
   /**
    * Set `robots` only when you don't want search engines to index the page.
    */
-  robots?: 'noindex' | 'nofollow' | 'noindex, nofollow';
+  robots?: 'noindex' | 'nofollow' | 'noindex, nofollow' | 'index, follow';
   description?: string;
   /**
-   * Truncate after descriptionMaxLength. Default value is 150.
+   * Truncate after maxDescriptionCharacters. Default value is 150.
    * (Google generally truncates descritpion to ~155–160 characters https://moz.com/learn/seo/meta-description )
    */
-  descriptionMaxLength?: number;
+  maxDescriptionCharacters?: number;
   twitter?: {
     /**
      * Twitter card type
@@ -32,12 +32,12 @@ type SEOProps = {
    * Additional meta tags.
    * Setting same value for `key` property between `<DefaultSeo />` and `<PageSeo />` will override the default meta tag (Otherwise both of them will be rendered)
    */
-  meta?: Record<string, string>[];
+  customMetaTags?: Record<string, string>[];
   /**
    * Additional link tags.
    * Setting same value for `key` property between `<DefaultSeo />` and `<PageSeo />` will override the default meta tag (Otherwise both of them will be rendered)
    */
-  link?: Record<string, string>[];
+  customLinkTags?: Record<string, string>[];
   og?: {
     title?: string;
     description?: string;
@@ -57,12 +57,12 @@ const SEO: React.VFC<SEOProps> = memo(
     description,
     canonical,
     robots,
-    descriptionMaxLength = 150,
+    maxDescriptionCharacters = 150,
     twitter = {},
     facebook = {},
     og = {},
-    meta = [],
-    link = []
+    customMetaTags = [],
+    customLinkTags = []
   }) => {
     const tags = [];
 
@@ -77,7 +77,7 @@ const SEO: React.VFC<SEOProps> = memo(
         <meta
           key="description"
           name="description"
-          content={description.substr(0, descriptionMaxLength)}
+          content={description.substr(0, maxDescriptionCharacters)}
         />
       );
     }
@@ -120,7 +120,7 @@ const SEO: React.VFC<SEOProps> = memo(
           property="og:description"
           content={(og.description || description)?.substr(
             0,
-            descriptionMaxLength
+            maxDescriptionCharacters
           )}
         />
       );
@@ -138,12 +138,20 @@ const SEO: React.VFC<SEOProps> = memo(
       );
     }
 
-    meta.forEach(({ key, ...tagProps }, i) => {
-      tags.push(<meta key={`meta:${key || i}`} {...tagProps} />);
-    });
-    link.forEach(({ key, ...tagProps }, i) => {
-      tags.push(<link key={`link:${key || i}`} {...tagProps} />);
-    });
+    if (customMetaTags.length > 0) {
+      tags.push(
+        customMetaTags.map(({ key, ...tagProps }, i) => (
+          <meta key={`meta-${key || i}`} {...tagProps} />
+        ))
+      );
+    }
+    if (customLinkTags.length > 0) {
+      tags.push(
+        customLinkTags.map(({ key, ...tagProps }, i) => (
+          <link key={`link-${key || i}`} {...tagProps} />
+        ))
+      );
+    }
 
     return <NextHead>{tags}</NextHead>;
   }

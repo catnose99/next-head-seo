@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-seo-lite",
+  "name": "next-head-seo",
   "version": "0.1.0",
   "description": "Tiny SEO plugin for Next.js",
   "main": "./dist/index.js",
@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/catnose99/nextjs-seo-lite.git"
+    "url": "https://github.com/catnose99/next-head-seo.git"
   },
   "prettier": {
     "semi": true,
