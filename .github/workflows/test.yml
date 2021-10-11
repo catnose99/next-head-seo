@@ -1,4 +1,4 @@
-name: Test on push
+name: Testing
 
 on:
   pull_request:
@@ -14,6 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install packages
-        run: npm install
+        run: npm install --frozen-lockfile
       - name: Run tests
         run: npm run test
