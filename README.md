@@ -1,6 +1,3 @@
-TODO
-- [ ] README消す
-- [ ] Changelogを自動で記載する設定
-- [ ] Examplesを作成する
+# next-head-seo 
 
-
+A light-weight SEO plugin for Next.js.
