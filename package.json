@@ -1,7 +1,6 @@
 {
   "name": "next-head-seo",
   "source": "./index.tsx",
-  "type": "module",
   "version": "0.1.0",
   "description": "Tiny SEO plugin for Next.js",
   "main": "./dist/index.js",
