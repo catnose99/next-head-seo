@@ -5,7 +5,7 @@
 
 A simple and light-weight SEO plugin for Next.js applications.
 
-- ⚡️ < 1KB gzipped
+- ⚡️ < 1kb gzipped
 - ✨ Zero dependencies
 - ✍️ Designed based on [Google Webmaster Guidelines](https://developers.google.com/search/docs/advanced/guidelines/webmaster-guidelines)
 - 🦄 TypeScript support 
@@ -253,7 +253,7 @@ Example:
 <NextHeadSeo
   customMetaTags={[
     {
-      key="custom-meta"
+      key: "custom-meta",
       name: 'foo',
       content: 'foo-content'
     }
@@ -264,7 +264,7 @@ Example:
 <NextHeadSeo
   customMetaTags={[
     {
-      key="custom-meta"
+      key: "custom-meta",
       name: 'bar',
       content: 'bar-content'
     }
@@ -312,7 +312,7 @@ Example:
 <NextHeadSeo
   customLinkTags={[
     {
-      key="custom-link"
+      key: "custom-link",
       rel: 'foo',
       content: 'https://example.com/foo'
     }
@@ -323,7 +323,7 @@ Example:
 <NextHeadSeo
   customLinkTags={[
     {
-      key="custom-link"
+      key: "custom-link",
       rel: 'bar',
       type: 'bar-type',
       ccontent: 'https://example.com/bar'
