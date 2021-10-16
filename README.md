@@ -3,7 +3,7 @@
 [![Testing](https://github.com/catnose99/next-head-seo/actions/workflows/test.yml/badge.svg)](https://github.com/catnose99/next-head-seo/actions/workflows/test.yml)
 [![Gzipped size](https://badgen.net/bundlephobia/minzip/next-head-seo)](https://badgen.net/bundlephobia/minzip/next-head-seo)
 
-A light-weight SEO plugin for Next.js applications.
+A simple and light-weight SEO plugin for Next.js applications.
 
 - ⚡️ < 1KB gzipped
 - ✨ Zero dependencies
@@ -24,7 +24,7 @@ $ yarn next-head-seo
 
 ## Usage
 
-Use SEO component on each page component.
+Import `next-head-seo` on each page component and add the desired properties.
 
 Example:
 
