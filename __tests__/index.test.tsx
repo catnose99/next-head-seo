@@ -196,19 +196,6 @@ describe('twitter', () => {
   });
 });
 
-describe('facebook', () => {
-  describe('appId', () => {
-    const selector = `meta[property="fb:app_id"]`;
-
-    test('should render meta fb:app_id by passing `fb:app_id` prop', () => {
-      render(<SEO facebook={{ appId: 'foo' }} />);
-      const metaElems = document.querySelectorAll(selector);
-      expect(metaElems.length).toBe(1);
-      expect(metaElems[0].getAttribute('content')).toBe('foo');
-    });
-  });
-});
-
 describe('customMetaTags', () => {
   test('should render meta elements correctly by passing `customMetaTags` props', () => {
     render(

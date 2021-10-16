@@ -25,9 +25,6 @@ type SEOProps = {
      */
     site?: string;
   };
-  facebook?: {
-    appId?: string;
-  };
   /**
    * Additional meta tags.
    * Setting same value for `key` property between `<DefaultSeo />` and `<PageSeo />` will override the default meta tag (Otherwise both of them will be rendered)
@@ -59,7 +56,6 @@ const SEO: React.VFC<SEOProps> = memo(
     robots,
     maxDescriptionCharacters = 150,
     twitter = {},
-    facebook = {},
     og = {},
     customMetaTags = [],
     customLinkTags = []
@@ -93,11 +89,6 @@ const SEO: React.VFC<SEOProps> = memo(
     if (twitter.site) {
       tags.push(
         <meta key="twitter:site" name="twitter:site" content={twitter.site} />
-      );
-    }
-    if (facebook.appId) {
-      tags.push(
-        <meta key="fb:app_id" property="fb:app_id" content={facebook.appId} />
       );
     }
     if (og.url || canonical) {

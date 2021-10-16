@@ -1,8 +1,8 @@
 {
   "name": "next-head-seo",
   "source": "./index.tsx",
-  "version": "0.1.0",
-  "description": "Tiny SEO plugin for Next.js",
+  "version": "0.1.1",
+  "description": "Tiny SEO plugin for Next.js applications",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.module.js",
@@ -41,5 +41,10 @@
     "trailingComma": "none",
     "arrowParens": "avoid"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "next.js",
+    "next/head",
+    "seo"
+  ]
 }
