@@ -37,11 +37,11 @@ const Page = () => (
     <h1>Hello!</h1>
     <NextHeadSeo
       title="Hello!"
-      description="Snippet for meta description"
-      canonical="https://example.com/page-url"
+      description="Some description"
+      canonical="https://example.com/hello"
       og={{
-        title: "Title for og:title", 
-        image: "https://example.com/og-image.png",
+        title: "Open graph title", 
+        image: "https://example.com/og.png",
       }}
     />
   </>
@@ -51,28 +51,20 @@ export defualt Page
 
 // Output:
 // <head>
-//   ...
 //   <title>Hello!</title>
-//   <meta name="description" content="Snippet for meta description" />
-//   <link rel="canonical" href="https://example.com/page-url"/>
-//   <meta property="og:title" content="Title for og:title"/>
-//   <meta property="og:image" content="https://example.com/og-image.png"/>
-//   ...
+//   <meta name="description" content="Some description" />
+//   <link rel="canonical" href="https://example.com/hello"/>
+//   <meta property="og:title" content="Open graph title"/>
+//   <meta property="og:image" content="https://example.com/og.png"/>
 // </head>
 ```
 
-Output inside `<head>`:
 
-```html
-
-```
-
-
-### Default SEO Settings
+## Default SEO Settings
 
 There are 2 options to configure default SEO properies.
 
-#### 1) Place default `<NextHeadSeo />` on `_app.tsx`
+### Place default `<NextHeadSeo />` on `_app.tsx`
 
 First option is to place `<NextHeadSeo />` with default values on `_app.tsx`.
 
@@ -87,7 +79,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/* Default SEO configuration */}
       <NextHeadSeo
         og={{
-          image: "https://example.com/default-og-image.png",
+          image: "https://example.com/default-og.png",
           type: 'article',
           siteName: 'Your app name',
         }}
@@ -104,11 +96,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp
 ```
 
-Make sure `<NextHeadSeo />` is placed before `<Component {...pageProps} />` since next-head-seo respects the latter value for same property names.
+Make sure `<NextHeadSeo />` is placed before `<Component {...pageProps} />` since next-head-seo respects the latter value for same property name.
 
 
 
-#### 2) Create Wrapper Component for next-head-seo
+### Create Wrapper Component for next-head-seo
 
 Alternatively, just create a wrapper component which can be used on each page component. This is more frexible and reliable way to set default values. 
 
@@ -133,7 +125,7 @@ export const MyPageSeo: React.FC<MyPageSeoProps> = (props) => {
     path,
     title = "Default title",
     description = "Default description",
-    ogImagePath = "/default-og-image.png"
+    ogImagePath = "/default-og.png"
     noindex,
     noTitleTemplate,
   } = props;
@@ -190,7 +182,6 @@ export defualt Page
 
 // Output:
 // <head>
-//   ...
 //   <title>Hello! - MyAppName</title>
 //   <meta name="robots" content="noindex, nofollow"/>
 //   <meta name="description" content="Default description" />
@@ -198,11 +189,10 @@ export defualt Page
 //   <meta property="og:url" content="https://example.com/example"/>
 //   <meta property="og:title" content="Hello!"/>
 //   <meta property="og:description" content="Default description"/>
-//   <meta property="og:image" content="https://example.com//default-og-image.png"/>
+//   <meta property="og:image" content="https://example.com//default-og.png"/>
 //   <meta property="og:type" content="article"/>
 //   <meta property="og:site_name" content="MyAppName"/>
 //   <meta name="twitter:card" content="summary_large_image"/>
-//   ...
 // </head>
 ```
 
@@ -211,25 +201,22 @@ export defualt Page
 
 All the props for `next-head-seo` are optional.
 
-| Prop                                                                                                                       | Description                                                                                                                                                                                                                                        |
-|----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| title                                                                                                                      | ✅ Recommended to set on each component.<br/>Page title.                                                                                                                                                                                            |
-| canonical                                                                                                                  | ✅ Recommended to set on each component.                                                                                                                                                                                                           |
-| Canonical URL of the page."                                                                                                |
-| robots                                                                                                                     | Set `noindex, nofollow` only when you don't want search engine to index the page. Otherwise you don't have to use this prop.                                                                                                                       |
-| description                                                                                                                | ✅ Recommended to set on each component.                                                                                                                                                                                                           |
-| Page description. Text after 150 characters will be truncated as [Google do](https://moz.com/learn/seo/meta-description). |
-| twitter.card                                                                                                               | Twitter card type. Set along with `og:image` prop. See [Cards - Twitter](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary) for detail.<br />Allowed values:<br/>`summary`, `summary_large_image`, `player`, `app` |
-| twitter.site                                                                                                               | Twitter username starting with `@`                                                                                                                                                                                                                 |
-| og.title                                                                                                                   | For og:title. Automatically use `title` value if blank. See detail: [Open Graph protocol](https://ogp.me/)                                                                                                                                         |
-| og.description                                                                                                             | For og:description. Automatically use `description` value if blank.                                                                                                                                                                                |
-| og.url                                                                                                                     | For og:url. Automatically use `canonical` value if blank.                                                                                                                                                                                          |
-| og.image                                                                                                                   | Set image url for og:image.                                                                                                                                                                                                                        |
-| og.type                                                                                                                    | Allowed values:<br/>`article`, `book`, `website`, `profile`                                                                                                                                                                                        |
-| og.siteName                                                                                                                | For og:site_name                                                                                                                                                                                                                                   |
-| customMetaTags                                                                                                             | Array of object for custom meta tags. See [customMetaTags](#custom-meta-tags) section.                                                                                                                                                             |
-| customLinkTags                                                                                                             | Array of object for custom link tags. See [customLinkTags](#custom-link-tags) section.                                                                                                                                                             |
-
+| Prop           | Description                                                                                                                                                                                                                                        |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| title          | ✅ Recommended to set on each component.<br/>Page title.                                                                                                                                                                                            |
+| canonical      | ✅ Recommended to set on each component.<br />Canonical URL of the page.                                                                                                                                                                            |
+| robots         | Set `noindex, nofollow` only when you don't want search engine to index the page. Otherwise you don't have to use this prop.                                                                                                                       |
+| description    | ✅ Recommended to set on each component.<br/>Page description. Text after 150 characters will be truncated as [Google do](https://moz.com/learn/seo/meta-description).                                                                              |
+| twitter.card   | Twitter card type. Set along with `og:image` prop. See [Cards - Twitter](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary) for detail.<br />Allowed values:<br/>`summary`, `summary_large_image`, `player`, `app` |
+| twitter.site   | Twitter username starting with `@`                                                                                                                                                                                                                 |
+| og.title       | For og:title. Automatically use `title` value if blank. See detail: [Open Graph protocol](https://ogp.me/)                                                                                                                                         |
+| og.description | For og:description. Automatically use `description` value if blank.                                                                                                                                                                                |
+| og.url         | For og:url. Automatically use `canonical` value if blank.                                                                                                                                                                                          |
+| og.image       | Set image url for og:image.                                                                                                                                                                                                                        |
+| og.type        | Allowed values:<br/>`article`, `book`, `website`, `profile`                                                                                                                                                                                        |
+| og.siteName    | For og:site_name                                                                                                                                                                                                                                   |
+| customMetaTags | Array of object for custom meta tags. See [customMetaTags](#custom-meta-tags) section.                                                                                                                                                             |
+| customLinkTags | Array of object for custom link tags. See [customLinkTags](#custom-link-tags) section.                                                                                                                                                             |
 
 
 ### Custom Meta Tags
@@ -252,10 +239,8 @@ Example:
 />
 // Output:
 // <head>
-//   ...
 //   <meta name="foo" content="foo-content"/>
 //   <meta name="bar" content="bar-content"/>
-//   ...
 // </head>
 ```
 
@@ -288,9 +273,7 @@ Example:
 
 // Output:
 // <head>
-//   ...
 //   <meta name="bar" content="bar-content"/>
-//   ...
 // </head>
 ```
 
@@ -316,10 +299,8 @@ Example:
 />
 // Output:
 // <head>
-//   ...
 //   <link rel="foo" content="https://example.com/foo"/>
 //   <link rel="bar" type="bar-type" content="https://example.com/bar"/>
-//   ...
 // </head>
 ```
 
@@ -352,8 +333,6 @@ Example:
 
 // Output:
 // <head>
-//   ...
 //   <link rel="bar" type="bar-type" content="https://example.com/bar"/>
-//   ...
 // </head>
 ```
