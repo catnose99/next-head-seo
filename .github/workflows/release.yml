@@ -25,8 +25,12 @@ jobs:
           npm run build
       - name: Set released version to env
         run: node -p -e '`RELEASED_PACKAGE_VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
+      - name: Check version changes
+        uses: EndBug/version-check@v1
+        id: check
       - name: Create release draft on GitHub
         uses: release-drafter/release-drafter@v5
+        if: steps.check.outputs.changed == 'true'
         with:
           version: ${{ env.RELEASED_PACKAGE_VERSION }}
           name: ${{ env.RELEASED_PACKAGE_VERSION }}
@@ -34,9 +38,6 @@ jobs:
           publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check version changes
-        uses: EndBug/version-check@v1
-        id: check
       - name: Publish
         run: npm publish
         if: steps.check.outputs.changed == 'true'
