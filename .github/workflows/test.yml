@@ -6,7 +6,8 @@ on:
       - main
       - develop
     types: [opened, synchronize]
-
+    paths-ignore:
+      - '**.md'
 jobs:
   test:
     runs-on: ubuntu-latest
