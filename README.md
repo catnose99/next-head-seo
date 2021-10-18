@@ -47,7 +47,7 @@ const Page = () => (
   </>
 );
 
-export defualt Page
+export default Page
 
 // Output:
 // <head>
@@ -178,7 +178,7 @@ const Page = () => (
     />
   </>
 );
-export defualt Page
+export default Page
 
 // Output:
 // <head>
