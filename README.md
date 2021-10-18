@@ -19,7 +19,7 @@ If you need advanced SEO settings such as [structured data](https://developers.g
 ```bash
 $ npm install next-head-seo
 # or with yarn
-$ yarn next-head-seo
+$ yarn add next-head-seo
 ```
 
 ## Usage
