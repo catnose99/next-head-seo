@@ -125,7 +125,7 @@ export const MyPageSeo: React.FC<MyPageSeoProps> = (props) => {
     path,
     title = "Default title",
     description = "Default description",
-    ogImagePath = "/default-og.png"
+    ogImagePath = "/default-og.png",
     noindex,
     noTitleTemplate,
   } = props;
