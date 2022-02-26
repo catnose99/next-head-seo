@@ -8,7 +8,7 @@ A simple and light-weight SEO plugin for Next.js applications.
 - ⚡️ < 1kb gzipped
 - ✨ Zero dependencies
 - ✍️ Designed based on [Google Webmaster Guidelines](https://developers.google.com/search/docs/advanced/guidelines/webmaster-guidelines)
-- 🦄 TypeScript support 
+- 🦄 TypeScript support
 
 Although `next-head-seo` supports only essential SEO properties, it would be enough for most websites.
 
@@ -40,7 +40,7 @@ const Page = () => (
       description="Some description"
       canonical="https://example.com/hello"
       og={{
-        title: "Open graph title", 
+        title: "Open graph title",
         image: "https://example.com/og.png",
       }}
     />
@@ -102,7 +102,7 @@ Make sure `<NextHeadSeo />` is placed before `<Component {...pageProps} />` sinc
 
 ### Create Wrapper Component for next-head-seo
 
-Alternatively, just create a wrapper component which can be used on each page component. This is more frexible and reliable way to set default values. 
+Alternatively, just create a wrapper component which can be used on each page component. This is more flexible and reliable way to set default values.
 
 Here is an example of wrapper component:
 
@@ -222,7 +222,7 @@ All the props for `next-head-seo` are optional.
 ### Custom Meta Tags
 
 You can set additional meta tags.
-Example: 
+Example:
 
 ```tsx
 <NextHeadSeo
@@ -246,7 +246,7 @@ Example:
 
 If you want to override custom meta tags from another page component, use same keys for both component.
 
-Example: 
+Example:
 
 ```tsx
 // in /pages/_app.tsx
@@ -281,7 +281,7 @@ Example:
 
 
 You can set additional link tags.
-Example: 
+Example:
 
 ```tsx
 <NextHeadSeo
@@ -305,7 +305,7 @@ Example:
 ```
 
 If you want to override custom link tags from another page component, use same keys for both component.
-Example: 
+Example:
 
 ```tsx
 // in /pages/_app.tsx
