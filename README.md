@@ -130,7 +130,7 @@ export const MyPageSeo: React.FC<MyPageSeoProps> = (props) => {
     noTitleTemplate,
   } = props;
 
-  // Set APP_ROOT_URL on enviroment variables
+  // Set APP_ROOT_URL on environment variables
   // e.g. APP_ROOT_URL=https://example.com
   // https://nextjs.org/docs/basic-features/environment-variables
   const APP_ROOT_URL = process.env.NEXT_PUBLIC_APP_ROOT_URL;
