@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
 import NextHead from 'next/head';
+import React, { memo } from 'react';
 
-type SEOProps = {
+export type SEOProps = {
   title?: string;
   canonical?: string;
   /**
@@ -46,6 +46,23 @@ type SEOProps = {
     image?: string;
     siteName?: string;
   };
+  /**
+   * Article specific meta tags
+   * https://ogp.me/#type_article
+   */
+  article?: {
+    author?: string;
+    publishedTime?: string;
+    modifiedTime?: string;
+    expirationTime?: string;
+    section?: string;
+    tag?: string;
+  };
+  /**
+   * JSON-LD schema
+   * https://developers.google.com/search/docs/guides/intro-structured-data
+   */
+  jsonSchema?: Record<string, string | Record<string, string>>;
 };
 
 const SEO: React.VFC<SEOProps> = memo(
@@ -57,6 +74,8 @@ const SEO: React.VFC<SEOProps> = memo(
     maxDescriptionCharacters = 150,
     twitter = {},
     og = {},
+    article = {},
+    jsonSchema,
     customMetaTags = [],
     customLinkTags = []
   }) => {
@@ -141,6 +160,60 @@ const SEO: React.VFC<SEOProps> = memo(
         customLinkTags.map(({ key, ...tagProps }, i) => (
           <link key={`link-${key || i}`} {...tagProps} />
         ))
+      );
+    }
+
+    if (article.author) {
+      tags.push(
+        <meta key="author" name="author" content={article.author} />,
+        <meta
+          key="article:author"
+          property="article:author"
+          content={article.author}
+        />
+      );
+    }
+    if (article.publishedTime) {
+      tags.push(
+        <meta
+          key="article:published_time"
+          property="article:published_time"
+          content={article.publishedTime}
+        />
+      );
+    }
+    if (article.modifiedTime) {
+      tags.push(
+        <meta
+          key="article:modified_time"
+          property="article:modified_time"
+          content={article.modifiedTime}
+        />
+      );
+    }
+    if (article.section) {
+      tags.push(
+        <meta
+          key="article:section"
+          property="article:section"
+          content={article.section}
+        />
+      );
+    }
+    if (article.tag) {
+      tags.push(
+        <meta key="article:tag" property="article:tag" content={article.tag} />
+      );
+    }
+
+    if (jsonSchema) {
+      tags.push(
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonSchema, null, 2)
+          }}
+        />
       );
     }
 
