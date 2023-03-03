@@ -62,7 +62,7 @@ export type SEOProps = {
    * JSON-LD schema
    * https://developers.google.com/search/docs/guides/intro-structured-data
    */
-  jsonSchema?: Record<string, string | Record<string, string>>;
+  jsonSchema?: Record<string, any>;
 };
 
 const SEO: React.VFC<SEOProps> = memo(
